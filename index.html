@@ -1,37 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Análise de Planta - IA</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Diagnóstico de Planta (TensorFlow.js)</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f6f8fa;
-      color: #333;
-      text-align: center;
-      padding: 40px;
-    }
-    h1 { color: #2e8b57; }
-    input, button {
-      margin: 10px;
-      padding: 10px;
-      font-size: 16px;
-    }
-    #result {
-      margin-top: 20px;
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+    body { font-family: Inter, Arial, sans-serif; max-width:900px; margin:40px auto; color:#222; background:#fbfdfe; }
+    h1 { color:#2e8b57; }
+    .card { background:#fff; padding:18px; border-radius:10px; box-shadow:0 6px 18px rgba(20,20,30,0.06); }
+    #preview { max-width:320px; max-height:320px; margin:12px 0; border-radius:8px; }
+    input, button { padding:10px 12px; font-size:15px; border-radius:8px; border:1px solid #ddd; }
+    button { background:#2e8b57; color:white; cursor:pointer; border:none; }
+    .pred { margin:8px 0; padding:10px; border-radius:8px; background:#f6fffa; }
+    .warning { color:#b34700; }
+    .footer { margin-top:12px; font-size:13px; color:#666; }
   </style>
 </head>
 <body>
-  <h1>🌿 Diagnóstico de Plantas com IA</h1>
-  <input type="file" id="imageInput" accept="image/*" />
-  <button id="analyzeButton">Analisar</button>
-  <div id="result"></div>
+  <div class="card">
+    <h1>🌿 Diagnóstico de Planta (gratuito — roda no navegador)</h1>
+    <p>Escolha uma foto da folha/planta. O modelo exibirá as classes previstas e sugestões genéricas.</p>
+
+    <input type="file" id="imageInput" accept="image/*" />
+    <button id="analyzeButton">Analisar imagem</button>
+
+    <div id="status" style="margin-top:12px;">Modelo: <span id="modelStatus">carregando…</span></div>
+
+    <img id="preview" src="" alt="Preview da imagem" hidden />
+
+    <div id="predictions" style="margin-top:12px;"></div>
+    <div id="recommendation" style="margin-top:12px;"></div>
+
+    <div class="footer">
+      <strong>Atenção:</strong> Resultado exploratório — não substitui diagnóstico profissional. Para aplicação de produtos, consulte um agrônomo.
+    </div>
+  </div>
+
+  <!-- TensorFlow.js e MobileNet -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.2.2/dist/mobilenet.min.js"></script>
 
   <script src="app.js"></script>
 </body>
