@@ -1,38 +1,89 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Diagnóstico de Plantas - Simples</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant Diagnosis 🌿</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f7f2;
+      text-align: center;
+      padding: 40px;
+      color: #2e4a2f;
+    }
+
+    h1 {
+      color: #2e7d32;
+    }
+
+    input[type="file"] {
+      margin: 20px 0;
+      padding: 10px;
+    }
+
+    button {
+      background-color: #2e7d32;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #256928;
+    }
+
+    img {
+      display: none;
+      margin-top: 20px;
+      max-width: 300px;
+      border-radius: 10px;
+    }
+
+    #resultado {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <main class="container">
-    <header>
-      <h1>Diagnóstico de Plantas (simulação)</h1>
-      <p>Tire/Envie a foto da folha e veja um diagnóstico automático (simulado).</p>
-    </header>
+  <h1>🌱 Plant Diagnosis</h1>
+  <p>Envie uma foto da planta para análise:</p>
 
-    <section class="card upload-card">
-      <label class="upload-area" id="uploadArea">
-        <input type="file" id="imageInput" accept="image/*" />
-        <div class="hint">Clique ou arraste a foto da planta aqui</div>
-        <img id="preview" alt="preview" style="display:none;" />
-      </label>
+  <input type="file" accept="image/*" onchange="mostrarImagem(event)">
+  <br>
+  <button onclick="analisarImagem()">Analisar</button>
 
-      <div class="controls">
-        <button id="sendBtn" class="btn" disabled>Enviar para diagnóstico</button>
-        <div id="status" class="status"></div>
-      </div>
-    </section>
+  <br>
+  <img id="preview" src="#" alt="Pré-visualização da imagem">
+  <p id="resultado"></p>
 
-    <section class="card result-card" id="resultCard" style="display:none;">
-      <h2>Resultado</h2>
-      <div id="resultContent"></div>
-      <button id="newBtn" class="btn secondary">Novo diagnóstico</button>
-    </section>
-  </main>
+  <script>
+    function mostrarImagem(event) {
+      let imagem = document.getElementById("preview");
+      imagem.src = URL.createObjectURL(event.target.files[0]);
+      imagem.style.display = "block";
+    }
 
-  <script src="app.js"></script>
+    function analisarImagem() {
+      let resultado = document.getElementById("resultado");
+      resultado.innerHTML = "🔍 Analisando a imagem...";
+
+      setTimeout(() => {
+        // Aqui simulamos a IA (você pode mudar as mensagens)
+        const respostas = [
+          "🌿 Diagnóstico: Mancha foliar. Recomendado aplicar fungicida preventivo.",
+          "🍂 Diagnóstico: Ferrugem. Reduza a umidade e use fungicida específico.",
+          "🌾 Diagnóstico: Oídio. Faça a poda das folhas afetadas e aplique enxofre.",
+          "🌻 Diagnóstico: Planta saudável! Nenhum problema detectado."
+        ];
+        const sorteio = Math.floor(Math.random() * respostas.length);
+        resultado.innerHTML = respostas[sorteio];
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
