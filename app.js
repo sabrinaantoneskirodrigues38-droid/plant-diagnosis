@@ -31,7 +31,8 @@ button.addEventListener("click", async () => {
     }
 
     const data = await resp.json();
-    if (data?.result) {
+
+    if (data && data.result) {
       const r = data.result;
       if (r.raw) {
         result.innerText = r.raw;
@@ -43,11 +44,11 @@ button.addEventListener("click", async () => {
         `;
       }
     } else {
-      result.innerText = JSON.stringify(data);
+      result.innerText = "❌ Nenhum resultado retornado da API.";
     }
 
   } catch (err) {
-    console.error(err);
-    result.innerText = "Erro ao conectar com a API.";
+    console.error("Erro:", err);
+    result.innerText = "⚠️ Erro ao conectar com a API.";
   }
 });
