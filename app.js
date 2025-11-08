@@ -18,7 +18,7 @@ button.addEventListener("click", async () => {
   result.innerText = "🔍 Enviando imagem para análise... aguarde.";
 
   try {
-    const resp = await fetch(`${REPL_URL}/diagnose`, {   // ✅ CORRETO
+    const resp = await fetch(`${REPL_URL}/diagnose`, {
   method: "POST",
   body: formData
 });
@@ -52,4 +52,5 @@ button.addEventListener("click", async () => {
     result.innerText = "Erro ao conectar com a API.";
   }
 });
+
 
