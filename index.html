@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diagnóstico de Plantas - Simples</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>Diagnóstico de Plantas (simulação)</h1>
+      <p>Tire/Envie a foto da folha e veja um diagnóstico automático (simulado).</p>
+    </header>
+
+    <section class="card upload-card">
+      <label class="upload-area" id="uploadArea">
+        <input type="file" id="imageInput" accept="image/*" />
+        <div class="hint">Clique ou arraste a foto da planta aqui</div>
+        <img id="preview" alt="preview" style="display:none;" />
+      </label>
+
+      <div class="controls">
+        <button id="sendBtn" class="btn" disabled>Enviar para diagnóstico</button>
+        <div id="status" class="status"></div>
+      </div>
+    </section>
+
+    <section class="card result-card" id="resultCard" style="display:none;">
+      <h2>Resultado</h2>
+      <div id="resultContent"></div>
+      <button id="newBtn" class="btn secondary">Novo diagnóstico</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
