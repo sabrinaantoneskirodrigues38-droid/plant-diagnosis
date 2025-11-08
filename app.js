@@ -19,10 +19,8 @@ button.addEventListener("click", async () => {
 
   try {
     const resp = await fetch(`${REPL_URL}/diagnose`, {
-  method: "POST",
-  body: formData
-});
-
+      method: "POST",
+      body: formData
     });
 
     if (!resp.ok) {
@@ -47,10 +45,9 @@ button.addEventListener("click", async () => {
     } else {
       result.innerText = JSON.stringify(data);
     }
+
   } catch (err) {
     console.error(err);
     result.innerText = "Erro ao conectar com a API.";
   }
 });
-
-
