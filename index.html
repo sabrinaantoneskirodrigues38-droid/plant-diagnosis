@@ -3,16 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diagnóstico de Plantas 🌿</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Análise de Planta - IA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f8fa;
+      color: #333;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 { color: #2e8b57; }
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    #result {
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
-  <h1>Diagnóstico de Plantas 🌱</h1>
-  <p>Tire uma foto da planta e veja se há sinais de doença.</p>
-
+  <h1>🌿 Diagnóstico de Plantas com IA</h1>
   <input type="file" id="imageInput" accept="image/*" />
   <button id="analyzeButton">Analisar</button>
-
   <div id="result"></div>
 
   <script src="app.js"></script>

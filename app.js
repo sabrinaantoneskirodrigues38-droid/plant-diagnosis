@@ -1,32 +1,52 @@
-// IA simulada para diagnóstico de plantas 🌿
-
 const input = document.getElementById("imageInput");
 const button = document.getElementById("analyzeButton");
 const result = document.getElementById("result");
 
-button.addEventListener("click", () => {
-  if (!input.files[0]) {
-    result.textContent = "Por favor, envie uma imagem da planta!";
+// 🔗 seu link do Replit aqui:
+const REPL_URL = "https://09d4486b-9965-4e35-80e3-44d4196352be-00-1m28kvmi84fo2.spock.replit.dev";
+
+button.addEventListener("click", async () => {
+  if (!input.files || input.files.length === 0) {
+    result.textContent = "Por favor, envie uma imagem!";
     return;
   }
 
-  // Mostra mensagem de análise
-  result.innerHTML = "🔍 Analisando imagem com IA...";
+  const file = input.files[0];
+  const formData = new FormData();
+  formData.append("image", file);
 
-  // Simula o tempo da análise (2 segundos)
-  setTimeout(() => {
-    const respostas = [
-      "🌿 Diagnóstico: Mancha Preta — Recomendado aplicar fungicida à base de cobre.",
-      "🍃 Diagnóstico: Míldio — Evite excesso de umidade e use calda bordalesa.",
-      "🐛 Diagnóstico: Pulgões — Use óleo de neem ou sabão inseticida.",
-      "☀️ Diagnóstico: Planta saudável! Nenhum sinal de doença.",
-      "🍂 Diagnóstico: Ferrugem — Retire folhas afetadas e aplique fungicida preventivo."
-    ];
+  result.innerText = "🔍 Enviando imagem para análise... aguarde.";
 
-    // Escolhe uma resposta aleatória
-    const respostaAleatoria = respostas[Math.floor(Math.random() * respostas.length)];
+  try {
+    const resp = await fetch(`${REPL_URL}/analyze`, {
+      method: "POST",
+      body: formData
+    });
 
-    // Mostra o resultado final
-    result.innerHTML = respostaAleatoria;
-  }, 2000);
+    if (!resp.ok) {
+      const text = await resp.text();
+      console.error("Erro API:", resp.status, text);
+      result.innerText = "Erro ao analisar a imagem.";
+      return;
+    }
+
+    const data = await resp.json();
+    if (data?.result) {
+      const r = data.result;
+      if (r.raw) {
+        result.innerText = r.raw;
+      } else {
+        result.innerHTML = `
+          <strong>🌱 Doença:</strong> ${r.disease || "—"}<br/>
+          <strong>🔎 Confiança:</strong> ${r.confidence || "—"}<br/>
+          <strong>💡 Recomendação:</strong> ${r.recommendation || "—"}
+        `;
+      }
+    } else {
+      result.innerText = JSON.stringify(data);
+    }
+  } catch (err) {
+    console.error(err);
+    result.innerText = "Erro ao conectar com a API.";
+  }
 });
