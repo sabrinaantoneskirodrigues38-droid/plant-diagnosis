@@ -1,20 +1,16 @@
-*{box-sizing:border-box}
-body{font-family:Inter, system-ui, Arial; background:#f5f7fa; margin:0; color:#111}
-.container{max-width:760px;margin:40px auto;padding:20px}
-header h1{margin:0 0 8px;font-size:22px}
-header p{margin:0 0 20px;color:#555}
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f5fff5;
+  padding: 20px;
+}
 
-.card{background:#fff;padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(20,30,60,0.06);margin-bottom:16px}
-.upload-area{display:flex;align-items:center;justify-content:center;flex-direction:column;border:2px dashed #dfe7ef;padding:30px;border-radius:10px;cursor:pointer;min-height:220px;position:relative;text-align:center}
-.upload-area input{position:absolute;inset:0;opacity:0;cursor:pointer}
-.hint{color:#6b7280}
-#preview{max-width:100%;max-height:320px;border-radius:8px;margin-top:12px}
+h1 {
+  color: #228b22;
+}
 
-.controls{display:flex;align-items:center;gap:12px;margin-top:12px}
-.btn{background:#0f62fe;color:white;padding:10px 14px;border-radius:8px;border:0;cursor:pointer}
-.btn[disabled]{opacity:.5;cursor:not-allowed}
-.secondary{background:#e6eefc;color:#0f62fe}
-.status{color:#444}
-
-.result-card h2{margin-top:0}
-.result-item{margin:10px 0;padding:10px;border-radius:8px;background:#f6f9ff}
+#result {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #333;
+}
