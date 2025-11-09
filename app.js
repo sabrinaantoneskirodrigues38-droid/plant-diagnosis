@@ -7,10 +7,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const model = await mobilenet.load();
-    result.innerText = "✅ Modelo carregado com sucesso! Envie uma imagem.";
+    result.innerText = "✅ Modelo carregado! Escolha uma imagem.";
 
     button.addEventListener("click", async () => {
-      if (!input.files || input.files.length === 0) {
+      if (!input.files.length) {
         result.textContent = "Por favor, envie uma imagem!";
         return;
       }
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       img.src = URL.createObjectURL(file);
       img.onload = async () => {
         const predictions = await model.classify(img);
-        result.innerHTML = `<strong>🔎 Resultado:</strong><br>`;
+        result.innerHTML = `<strong>🔎 Resultados:</strong><br>`;
         predictions.forEach(p => {
           result.innerHTML += `${p.className} — ${(p.probability * 100).toFixed(2)}%<br>`;
         });
