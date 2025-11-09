@@ -1,37 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Diagnóstico de Planta (TensorFlow.js)</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagnóstico de Plantas 🌿</title>
   <style>
-    body { font-family: Inter, Arial, sans-serif; max-width:900px; margin:40px auto; color:#222; background:#fbfdfe; }
-    h1 { color:#2e8b57; }
-    .card { background:#fff; padding:18px; border-radius:10px; box-shadow:0 6px 18px rgba(20,20,30,0.06); }
-    #preview { max-width:320px; max-height:320px; margin:12px 0; border-radius:8px; }
-    input, button { padding:10px 12px; font-size:15px; border-radius:8px; border:1px solid #ddd; }
-    button { background:#2e8b57; color:white; cursor:pointer; border:none; }
-    .pred { margin:8px 0; padding:10px; border-radius:8px; background:#f6fffa; }
-    .warning { color:#b34700; }
-    .footer { margin-top:12px; font-size:13px; color:#666; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f5f9f5;
+      padding: 20px;
+    }
+    h1 { color: #2f6d2f; }
+    #result {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
-  <h2>Diagnóstico de Planta 🌿</h2>
-  <input type="file" id="imageInput" accept="image/*">
+  <h1>🌱 Diagnóstico de Planta (Offline)</h1>
+  <input type="file" id="imageInput" accept="image/*" />
   <button id="analyzeButton">Analisar</button>
-  <div id="result"></div>
+  <div id="result">Carregando...</div>
 
-  <!-- TensorFlow.js e MobileNet (carregam antes do app.js) -->
- <script src="https://unpkg.com/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
-<script src="https://unpkg.com/@tensorflow-models/mobilenet@2.2.2/dist/mobilenet.min.js"></script>
-<script src="app.js"></script>
+  <!-- 🔗 Bibliotecas TensorFlow e MobileNet -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.2.2/dist/mobilenet.min.js"></script>
 
-  <!-- seu script principal (vem por último) -->
+  <!-- Seu script -->
   <script src="app.js"></script>
 </body>
-
 </html>
+
+
 
 
 
