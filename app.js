@@ -1,33 +1,25 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const input = document.getElementById("imageInput");
-  const button = document.getElementById("analyzeButton");
-  const result = document.getElementById("result");
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analisador de Plantas</title>
+</head>
+<body>
+  <h1>🌿 Diagnóstico de Plantas com IA</h1>
 
-  result.innerText = "🔄 Carregando modelo... aguarde.";
+  <!-- Campo para enviar a imagem -->
+  <input type="file" id="imageInput" accept="image/*" />
+  <button id="analyzeButton">Analisar</button>
 
-  try {
-    const model = await mobilenet.load();
-    result.innerText = "✅ Modelo carregado! Escolha uma imagem.";
+  <!-- Área onde aparecerá o resultado -->
+  <div id="result">Aguardando carregamento...</div>
 
-    button.addEventListener("click", async () => {
-      if (!input.files.length) {
-        result.textContent = "Por favor, envie uma imagem!";
-        return;
-      }
+  <!-- TensorFlow e MobileNet -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@2.2.2/dist/mobilenet.min.js"></script>
 
-      const file = input.files[0];
-      const img = document.createElement("img");
-      img.src = URL.createObjectURL(file);
-      img.onload = async () => {
-        const predictions = await model.classify(img);
-        result.innerHTML = `<strong>🔎 Resultados:</strong><br>`;
-        predictions.forEach(p => {
-          result.innerHTML += `${p.className} — ${(p.probability * 100).toFixed(2)}%<br>`;
-        });
-      };
-    });
-  } catch (err) {
-    console.error("Erro ao carregar modelo:", err);
-    result.innerText = "⚠️ Erro ao carregar modelo.";
-  }
-});
+  <!-- Seu script -->
+  <script src="app.js"></script>
+</body>
+</html>
