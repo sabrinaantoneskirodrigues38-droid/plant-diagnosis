@@ -17,34 +17,20 @@
   </style>
 </head>
 <body>
-  <div class="card">
-    <h1>🌿 Diagnóstico de Planta (gratuito — roda no navegador)</h1>
-    <p>Escolha uma foto da folha/planta. O modelo exibirá as classes previstas e sugestões genéricas.</p>
+  <h2>Diagnóstico de Planta 🌿</h2>
+  <input type="file" id="imageInput" accept="image/*">
+  <button id="analyzeButton">Analisar</button>
+  <div id="result"></div>
 
-    <input type="file" id="imageInput" accept="image/*" />
-    <button id="analyzeButton">Analisar imagem</button>
+  <!-- TensorFlow.js e MobileNet (carregam antes do app.js) -->
+  <script src="https://unpkg.com/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
+  <script src="https://unpkg.com/@tensorflow-models/mobilenet@2.2.2/dist/mobilenet.min.js"></script>
 
-    <div id="status" style="margin-top:12px;">Modelo: <span id="modelStatus">carregando…</span></div>
-
-    <img id="preview" src="" alt="Preview da imagem" hidden />
-
-    <div id="predictions" style="margin-top:12px;"></div>
-    <div id="recommendation" style="margin-top:12px;"></div>
-
-    <div class="footer">
-      <strong>Atenção:</strong> Resultado exploratório — não substitui diagnóstico profissional. Para aplicação de produtos, consulte um agrônomo.
-    </div>
-  </div>
-
-  <!-- TensorFlow.js e MobileNet -->
-<script src="https://unpkg.com/@tensorflow/tfjs@4.12.0/dist/tf.min.js"></script>
-<script src="https://unpkg.com/@tensorflow-models/mobilenet@2.2.2/dist/mobilenet.min.js"></script>
-
-
-<!-- seu script vem por último -->
-<script src="app.js"></script>
-
+  <!-- seu script principal (vem por último) -->
+  <script src="app.js"></script>
 </body>
+
 </html>
+
 
 
